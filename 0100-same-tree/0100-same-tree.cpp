@@ -6,10 +6,10 @@ public:
             v.push_back(NULL);
             return;
         }
-        v.push_back(root->val);
-        preorder(root->left,v);
         
+        preorder(root->left,v);
         preorder(root->right,v);
+        v.push_back(root->val);
         
     }
     bool isSameTree(TreeNode* p, TreeNode* q) 
