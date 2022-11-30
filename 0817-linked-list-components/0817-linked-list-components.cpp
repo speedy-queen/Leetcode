@@ -15,10 +15,14 @@ public:
         ListNode* temp = head;
         int count=0;
         bool connected=false;
+        set<int> st;
+        for(auto i: nums)
+            st.insert(i);
+        
         while(temp!=NULL)
         {
             int key = temp->val;
-            if(find(nums.begin(), nums.end(), key)!=nums.end())
+            if(st.count(key))
                 connected = true;
             else{
                 if(connected)
