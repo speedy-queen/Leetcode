@@ -11,26 +11,23 @@
 class Solution {
 public:
     int numComponents(ListNode* head, vector<int>& nums) {
-        
-        ListNode* temp = head;
-        int count=0;
-        bool connected=false;
-        while(temp!=NULL)
-        {
-            int key = temp->val;
-            if(find(nums.begin(), nums.end(), key)!=nums.end())
-                connected = true;
-            else{
-                if(connected)
-                count++;
-                
-                connected=false;
-            }
-            temp=temp->next;
+        set<int> s;
+        int c=0;
+        for(auto i:nums){
+            s.insert(i);
         }
-        if(connected)
-            count++;
-        
-        return count;
+        ListNode* temp = head;
+        while(temp!=NULL){
+            if(s.count(temp->val)){
+                c++;
+                while(temp!=NULL && s.count(temp->val)){
+                    temp = temp->next;
+                }
+            }
+            else{
+                temp = temp->next;
+            }
+        }
+        return c;
     }
 };
